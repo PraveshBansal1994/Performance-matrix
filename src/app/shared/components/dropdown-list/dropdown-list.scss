@@ -1,0 +1,24 @@
+.dropdown-container {
+  select {
+    background: var(--grid-tile-bg);
+    border: 1px solid #2a2d34;
+    border-radius: 6px;
+    color: var(--grid-search-bar-text-color);
+    font-family: monospace;
+    font-size: 12px;
+    padding: 9px 32px 9px 12px;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    outline: none;
+    text-transform: capitalize;
+
+    @media (min-width: 320px) and (max-width: 768px) {
+      width: 100%;
+    }
+
+    &:focus {
+      border-color: var(--grid-tile-deps-count-color);
+      border-width: 1px;
+    }
+  }
+}

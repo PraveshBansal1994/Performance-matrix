@@ -1,0 +1,29 @@
+<div class="header-container">
+  <div class="logo-wrap">
+    <div class="logo-icon">⚡</div>
+    <div class="logo-name">
+      <div class="title">{{ title }}</div>
+      <div class="sub-title">{{ subTitle }}</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="status">
+      <div class="dot"></div>
+      Live Synced:
+      <span class="sync-time">{{ refreshAt }}</span>
+    </div>
+    <div class="btn-icon-container">
+      <button class="refresh-btn" (click)="onRefresh()">
+        <span class="icon">⟳</span>
+        Refresh Data
+      </button>
+      <div class="theme">
+        @if (isDarkTheme) {
+          <i class="bi bi-brightness-high" title="Light Theme" (click)="toggleTheme()"></i>
+        } @else {
+          <i class="bi bi-brightness-high-fill" title="Dark Theme" (click)="toggleTheme()"></i>
+        }
+      </div>
+    </div>
+  </div>
+</div>

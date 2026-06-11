@@ -1,0 +1,126 @@
+.header-container {
+  padding: 16px 32px;
+  border-bottom: 1px solid #1c2e4a;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  backdrop-filter: blur(4px);
+  background: var(--header-bg);
+  color: var(--header-txt-color);
+
+  @media (min-width: 320px) and (max-width: 768px) {
+    display: block;
+    padding: 10px;
+  }
+
+  .logo-wrap {
+    display: flex;
+    align-items: center;
+
+    .logo-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      border-radius: 11px;
+      background: linear-gradient(111deg, #00e5a0, #0077ff);
+      padding: 12px;
+      font-size: 20px;
+      font-weight: 900;
+      box-shadow: 0 0 3px;
+    }
+
+    .logo-name {
+      margin-left: 20px;
+
+      .title {
+        font-size: 18px;
+        font-weight: 800;
+      }
+
+      .sub-title {
+        font-size: 11px;
+        color: var(--header-sub-title);
+        margin-top: 2px;
+      }
+    }
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    @media (min-width: 320px) and (max-width: 768px) {
+      margin-top: 15px;
+      justify-content: space-between;
+    }
+
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 12px;
+      color: var(--status-txt-color);
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--status-color);
+        animation: pulse 1s infinite;
+      }
+
+      .sync-time {
+        color: var(--status-color);
+      }
+    }
+
+    .btn-icon-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .refresh-btn {
+      display: flex;
+      align-items: center;
+      background: transparent;
+      border: 1px solid var(--refresh-btn-border);
+      color: var(--refresh-btn-color);
+      border-radius: 8px;
+      padding: 8px 18px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      gap: 6px;
+      transition: all 0.3s;
+
+      &:hover {
+        background: rgba(0, 119, 255, 0.08);
+        border-color: #0077ff;
+        transform: translateY(-1px);
+      }
+    }
+
+    .theme {
+      margin-left: 15px;
+      i {
+        cursor: pointer;
+        position: relative;
+        top: 2px;
+      }
+    }
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}

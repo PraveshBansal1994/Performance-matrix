@@ -1,0 +1,29 @@
+@if (data | async; as kpis) {
+  <div class="card-row">
+    @for (item of kpis | keyvalue; track $index) {
+      <div class="card-container" [ngClass]="item.value.class">
+        <div class="card-title">{{ item.value.title }}</div>
+        <div class="card-content">
+          <span>{{ item.value.data }}</span>
+          <span class="content-unit">{{ item.value.unit }}</span>
+        </div>
+        <div class="card-delta">
+          @if (item.value.status === 'up') {
+            <i class="bi bi-arrow-up-short success"></i>
+          } @else {
+            <i class="bi bi-arrow-down-short danger"></i>
+          }
+          <span
+            class="status"
+            [ngClass]="{
+              success: item.value.status === 'up',
+              danger: item.value.status === 'down',
+            }"
+            >{{ item.value.subTitle.highlight }}</span
+          >
+          {{ item.value.subTitle.appendedData }}
+        </div>
+      </div>
+    }
+  </div>
+}

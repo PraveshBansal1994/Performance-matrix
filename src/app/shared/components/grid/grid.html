@@ -1,0 +1,70 @@
+<div class="table-wrap-container">
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          @for (item of columns; track $index) {
+            <th
+              [ngClass]="{
+                sortable: item.toLowerCase() !== 'phone' && item.toLowerCase() !== 'joined on',
+                'sort-asc': item.toLowerCase() === sortCol && sortOrder === 'asc',
+                'sort-desc': item.toLowerCase() === sortCol && sortOrder === 'desc',
+              }"
+              (click)="sortData(item.toLowerCase())"
+            >
+              {{ item }}
+              @if (item.toLowerCase() !== 'phone' && item.toLowerCase() !== 'joined on') {
+                <span class="sort-icon">
+                  <span class="up"></span>
+                  <span class="down"></span>
+                </span>
+              }
+            </th>
+          }
+        </tr>
+      </thead>
+      <tbody>
+        @if (((data | async)?.data?.length ?? 0) > 0) {
+          @for (row of (data | async)?.data; track row.id) {
+            <tr>
+              <td class="cell-name-email-container">
+                <div class="cell-name">
+                  <div class="avatar">{{ row.firstname[0] }}{{ row.lastname[0] }}</div>
+                  <div>
+                    <div class="name-text">{{ row.firstname }} {{ row.lastname }}</div>
+                    <div class="email-text">{{ row.email }}</div>
+                  </div>
+                </div>
+              </td>
+              <td>{{ row.age }}</td>
+              <td>{{ row.role }}</td>
+              <td>
+                <span class="dept">{{ row.department }}</span>
+              </td>
+              <td>{{ row.gender }}</td>
+              <td>{{ row.joiningDate }}</td>
+              <td>
+                <span class="phone">{{ row.phone | phoneFormat }}</span>
+              </td>
+              <td>
+                <span
+                  class="badge"
+                  [ngClass]="{
+                    'badge-active': row.status.toLowerCase() === 'active',
+                    'badge-inactive': row.status.toLowerCase() === 'inactive',
+                  }"
+                  >{{ row.status }}</span
+                >
+              </td>
+            </tr>
+          }
+        } @else {
+          <tr>
+            <td colspan="8" class="no-data">No Rows to Show</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  <app-pagination-bar [data]="data" (paginationData)="paginationInfo($event)"></app-pagination-bar>
+</div>

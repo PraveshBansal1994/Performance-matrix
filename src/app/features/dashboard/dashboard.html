@@ -1,0 +1,76 @@
+<div class="dashboard-container">
+  <app-cards [data]="kpisData$"></app-cards>
+  <div class="chart-container">
+    <div class="chart-container-row">
+      <div class="card-title">
+        <span class="icon">📈</span>
+        Monthly Performance Trend
+      </div>
+      <app-line-chart [data]="monthlyTrendData"></app-line-chart>
+    </div>
+    <div class="chart-container-row">
+      <div class="card-title">
+        <span class="icon">🏢</span>
+        Department avg score
+      </div>
+      <app-v-bar-graph [data]="deptDetailsData"></app-v-bar-graph>
+    </div>
+    <div class="chart-container-row">
+      <div class="card-title">
+        <span class="icon">🎯</span>
+        Q2 Goal Progress
+      </div>
+      <app-doughnut-chart [data]="goalProgressData"></app-doughnut-chart>
+    </div>
+  </div>
+
+  <div class="grid-container">
+    <app-grid-container
+      [title]="gridTitle"
+      [subTitle]="gridSubTitle"
+      [filterListData]="deptDetailsData"
+      [data]="employeesDetails$"
+      (searchValChanged)="onSearchValChange($event)"
+      (dropdownSelectedDeptVal)="onDeptChange($event)"
+      (dropdownSelectedStatusVal)="onStatusChange($event)"
+      (sortInformation)="onSort($event)"
+      (paginationData)="onPaginationChange($event)"
+      (OnDateChange)="OnDateChange($event)"
+    ></app-grid-container>
+  </div>
+
+  <div class="grph-drilldown-container">
+    <div class="chart-container-row">
+      <div class="card-title">
+        <span class="icon">🎯</span>
+        Top employees in each department
+      </div>
+      @if ((topEmployeeComp$ | async)?.length) {
+        <app-h-bar-graph
+          [data$]="topEmployeeComp$"
+          (selectedData)="selectedRow($event)"
+        ></app-h-bar-graph>
+      }
+    </div>
+    <div class="drilldown-container">
+      <div class="emp-detail-title">Employee Information</div>
+      @if (!isEmpty(selectedTopEmpData)) {
+        <div class="emp-detail-header">
+          <div class="avatar">
+            {{ selectedTopEmpData?.name?.split(' ')[0][0]
+            }}{{ selectedTopEmpData?.name?.split(' ')[1][0] }}
+          </div>
+          <div>
+            <div class="emp-name">{{ selectedTopEmpData?.name }}</div>
+          </div>
+          <div class="score-badge">{{ selectedTopEmpData?.value }}</div>
+        </div>
+        <div class="emp-detail-content">Coming Soon...</div>
+      } @else {
+        <div class="emp-detail-content">Click on any line graph to show employee details</div>
+      }
+    </div>
+  </div>
+</div>
+
+<!-- <div class="emp-dept"></div> -->

@@ -1,0 +1,81 @@
+$white: #fff;
+
+:root {
+  --header-height: 80px;
+}
+
+.light-theme {
+  --main-bg: #{$white};
+  --header-bg: rgba(0, 0, 0, 0.86);
+  --text-color: black;
+  --header-txt-color: #{$white};
+  --header-sub-title: #b6bcc5;
+  --status-txt-color: #d2dbe7;
+  --status-color: #00ff40;
+  --refresh-btn-color: #00adff;
+  --refresh-btn-border: #adbbcd;
+  --success: #00e527;
+  --danger: #dc3545;
+  --danger_12: rgba(220, 53, 69, 0.12);
+  --danger_25: rgba(220, 53, 69, 0.25);
+  --card-bg-1: #{$white};
+  --card-bg-2: #d6d6d6;
+  --card-title-color: #0065ef;
+  --card-content-color-1: #00e527;
+  --card-content-color-2: #0050b3;
+  --card-content-color-3: #e99100;
+  --card-content-color-4: #5a42a1;
+  --grph-stroke-color: rgba(0, 0, 0, 0.5);
+  --grid-header-subtitle: #b5342e;
+  --grid-tile-bg: #dde1e7;
+  --grid-tile-txt-color: #000;
+  --grid-tile-deps-count-color: #0ca4e3;
+  --grid-search-bar-text-color: #000;
+  --grid-bg: #{$white};
+  --grid-email-text: rgb(35 79 233 / 85%);
+  --grid-text: #000;
+  --grid-dept-text: #{$white};
+  --grid-active-txt: #fff;
+  --grid-active-bg: rgba(0, 229, 39, 1);
+  --grid-active-border: rgb(0 0 0 / 30%);
+  --grid-inactive-txt: #fff;
+  --grid-inactive-bg: red;
+  --grid-inactive-border: rgba(0, 0, 0, 0.3);
+}
+
+.dark-theme {
+  --main-bg: #06030f;
+  --header-bg: rgb(11 17 32 / 86%);
+  --text-color: #e2eaf4;
+  --header-txt-color: #e2eaf4;
+  --header-sub-title: #5a7395;
+  --status-txt-color: #5a7395;
+  --status-color: #00e5a0;
+  --refresh-btn-color: #0077ff;
+  --refresh-btn-border: #243a56;
+  --success: #00e5a0;
+  --danger: #ff7c7c;
+  --card-bg-1: #0f1a2e;
+  --card-bg-2: #0b1120;
+  --card-title-color: #5a7395;
+  --card-content-color-1: #00e5a0;
+  --card-content-color-2: #60a5fa;
+  --card-content-color-3: #f5a623;
+  --card-content-color-4: #a78bfa;
+  --grph-stroke-color: #444444;
+  --grid-header-subtitle: #e8ff47;
+  --grid-tile-bg: #1c1f24;
+  --grid-tile-txt-color: #6e7280;
+  --grid-tile-deps-count-color: #47c9ff;
+  --grid-search-bar-text-color: #f0f0e8;
+  --grid-bg: #15171a;
+  --grid-email-text: #6e7280;
+  --grid-text: #9ca3af;
+  --grid-dept-text: #9ca3af;
+  --grid-active-txt: #00e5a0;
+  --grid-active-bg: rgba(0, 229, 160, 0.12);
+  --grid-active-border: rgba(0, 229, 160, 0.25);
+  --grid-inactive-txt: #ff7c7c;
+  --grid-inactive-bg: rgba(255, 124, 124, 0.12);
+  --grid-inactive-border: rgba(255, 124, 124, 0.25);
+}

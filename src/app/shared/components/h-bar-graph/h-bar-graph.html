@@ -1,0 +1,19 @@
+@if ((data$ | async)?.length) {
+  <ngx-charts-bar-horizontal
+    [view]="[350, 250]"
+    [style]="style"
+    [scheme]="colorScheme"
+    [results]="chartData$ | async"
+    [gradient]="gradient"
+    [xAxis]="showXAxis"
+    [yAxis]="showYAxis"
+    [legend]="showLegend"
+    [showXAxisLabel]="showXAxisLabel"
+    [showYAxisLabel]="showYAxisLabel"
+    [xAxisLabel]="xAxisLabel"
+    [yAxisLabel]="yAxisLabel"
+    [showDataLabel]="shoDataLabel"
+    (select)="onSelect($event)"
+  >
+  </ngx-charts-bar-horizontal>
+}

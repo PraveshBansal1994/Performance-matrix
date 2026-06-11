@@ -1,0 +1,39 @@
+@use 'variables';
+
+body {
+  margin: 0;
+  background: var(--main-bg);
+  color: var(--text-color);
+  font-family: sans-serif;
+  // display: flex;
+}
+
+.success {
+  color: var(--success);
+}
+
+.danger {
+  color: var(--danger);
+}
+
+/* Grid lines */
+.gridline-path {
+  stroke: yellow; /* your desired color */
+  stroke-dasharray: 2; /* optional: dashed lines */
+}
+
+/* Axis lines */
+.x.axis path,
+.y.axis path {
+  stroke: #444444; /* axis line color */
+}
+
+/* Axis ticks */
+.x.axis line,
+.y.axis line {
+  stroke: var(--grph-stroke-color); /* tick color */
+}
+
+.dark-theme input[type='date']::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}

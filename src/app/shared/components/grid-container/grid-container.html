@@ -1,0 +1,41 @@
+<div class="grid-header">
+  <div class="grid-title">
+    {{ title }} <i>{{ subTitle }}</i>
+  </div>
+  <div class="grid-tile-container">
+    <div class="grid-tile">
+      <div class="tile-number total">{{ (data | async)?.items }}</div>
+      <div class="tile-txt">Total</div>
+    </div>
+    <div class="grid-tile">
+      <div class="tile-number deps">{{ filterListData.length }}</div>
+      <div class="tile-txt">Deps</div>
+    </div>
+  </div>
+</div>
+<div class="grid-container">
+  <div class="filter-container">
+    <app-search-bar
+      [placeholder]="searchBarPlaceholder"
+      (valueChanged)="searchVal($event)"
+    ></app-search-bar>
+    <app-dropdown-list
+      [data]="filterListData"
+      [title]="'Departments'"
+      (selectedVal)="dropdownValDept($event)"
+    ></app-dropdown-list>
+    <app-dropdown-list
+      [data]="statusData"
+      [title]="'Status'"
+      (selectedVal)="dropdownValStatus($event)"
+    ></app-dropdown-list>
+    <app-date-filter (dateChange)="dateChange($event)"></app-date-filter>
+  </div>
+  <div class="grid">
+    <app-grid
+      [data]="data"
+      (sortInformation)="sortInfoVal($event)"
+      (paginationData)="paginationInfo($event)"
+    ></app-grid>
+  </div>
+</div>

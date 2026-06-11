@@ -1,0 +1,23 @@
+.date-filter-container {
+  // width: 100%;
+  background: var(--grid-tile-bg);
+  border: 1px solid #2a2d34;
+  border-radius: 6px;
+  color: var(--grid-search-bar-text-color);
+  font-family: monospace;
+  font-size: 12px;
+  padding: 9px 12px 9px 12px;
+  outline: none;
+  transition: border-color 0.2s;
+
+  input {
+    background: transparent;
+    border: none;
+    color: var(--grid-search-bar-text-color);
+    width: 100%;
+  }
+}
+
+input[type='date']::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+}

@@ -1,0 +1,39 @@
+<div class="pagination-bar">
+  <div class="rows-select">
+    Rows per page
+    <select [ngModel]="selectedPage()" (change)="rowPerPage($event)">
+      <option value="8">8</option>
+      <option selected value="15">15</option>
+      <option value="25">25</option>
+      <option value="50">50</option>
+    </select>
+  </div>
+  <div class="page-info">
+    Showing
+    <strong>
+      {{ fromItemIndex() }}
+      -
+      {{ toItemIndex() }}
+    </strong>
+    of <strong>{{ (data | async)?.items }}</strong>
+  </div>
+  <div class="page-controls">
+    <div>
+      <button class="page-btn" (click)="onPageClick('prev')" [disabled]="currentPage === 1">
+        ‹
+      </button>
+      @for (page of getPages(data | async); track page) {
+        <button
+          class="page-btn"
+          [ngClass]="{ active: page === currentPage }"
+          (click)="onPageClick(page)"
+        >
+          {{ page }}
+        </button>
+      }
+      <button class="page-btn" (click)="onPageClick('next')" [disabled]="currentPage === lastPage">
+        ›
+      </button>
+    </div>
+  </div>
+</div>

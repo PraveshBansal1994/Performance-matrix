@@ -1,21 +1,21 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { environment } from '@environments/environment';
+import { inject, Injectable } from '@angular/core';
+import { DepartmentDetailsRaw } from '@app/shared/models/department-details-raw.model';
+import { EmployeesComparision } from '@app/shared/models/employees-comparision.model';
+import { IEmployees } from '@app/shared/models/employees.model';
+import { GoalProgressRaw } from '@app/shared/models/goal-progress-raw.model';
+import { GridFeatures } from '@app/shared/models/grid-features.model';
 import { Kpi } from '@app/shared/models/kpi.model';
 import { MonthlyTrendRaw } from '@app/shared/models/monthly-trend-raw.model';
-import { DepartmentDetailsRaw } from '@app/shared/models/department-details-raw.model';
-import { GoalProgressRaw } from '@app/shared/models/goal-progress-raw.model';
-import { IEmployees } from '@app/shared/models/employees.model';
-import { GridFeatures } from '@app/shared/models/grid-features.model';
-import { EmployeesComparision } from '@app/shared/models/employees-comparision.model';
+import { environment } from '@environments/environment';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DashboardApi {
+  private http = inject(HttpClient);
   private basUrl = environment.apiUrl;
-  constructor(private http: HttpClient) {}
 
   // GET requests
   getKPIs(): Observable<Kpi> {

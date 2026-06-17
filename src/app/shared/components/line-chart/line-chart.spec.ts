@@ -1,11 +1,10 @@
-import { ComponentFixture, fakeAsync, flushMicrotasks, TestBed } from '@angular/core/testing';
-import { LineChart } from './line-chart';
-import { Theme } from '@app/core/services/theme';
-import { ThemeEnum } from '@app/shared/models/theme-config.model';
-import { MonthlyTrendProcessed } from '@app/shared/models/monthly-trend-processed.model';
-import { of } from 'rxjs';
 import { signal } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { Theme } from '@app/core/services/theme';
+import { MonthlyTrendProcessed } from '@app/shared/models/monthly-trend-processed.model';
+import { ThemeEnum } from '@app/shared/models/theme-config.model';
+import { LineChart } from './line-chart';
 
 // Mock Theme service
 class MockThemeService {

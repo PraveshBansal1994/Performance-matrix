@@ -1,12 +1,3 @@
-// import { PhoneFormatPipe } from './phone-format-pipe';
-
-// describe('PhoneFormatPipe', () => {
-//   it('create an instance', () => {
-//     const pipe = new PhoneFormatPipe();
-//     expect(pipe).toBeTruthy();
-//   });
-// });
-
 import { PhoneFormatPipe } from './phone-format-pipe';
 
 describe('PhoneFormatPipe', () => {
@@ -22,8 +13,8 @@ describe('PhoneFormatPipe', () => {
 
   it('should return empty string if value is null or undefined', () => {
     expect(pipe.transform('')).toBe('');
-    expect(pipe.transform(null as any)).toBe('');
-    expect(pipe.transform(undefined as any)).toBe('');
+    expect(pipe.transform(null)).toBe('');
+    expect(pipe.transform(undefined)).toBe('');
   });
 
   it('should format a valid phone number with country code', () => {

@@ -3,11 +3,10 @@ const eslint = require('@eslint/js');
 const { defineConfig } = require('eslint/config');
 const tseslint = require('typescript-eslint');
 const angular = require('angular-eslint');
-// import eslintPluginPrettier from 'eslint-plugin-prettier';
-// import eslintConfigPrettier from 'eslint-config-prettier';
 
 const prettierPlugin = require('eslint-plugin-prettier');
 const prettierConfig = require('eslint-config-prettier');
+const chaiFriendly = require('eslint-plugin-chai-friendly');
 
 module.exports = defineConfig([
   prettierConfig,

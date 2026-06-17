@@ -1,4 +1,4 @@
-import { Component, effect, Input } from '@angular/core';
+import { Component, effect, inject, Input, OnInit } from '@angular/core';
 import { Theme } from '@app/core/services/theme';
 import { MonthlyTrendProcessed } from '@app/shared/models/monthly-trend-processed.model';
 import { ThemeEnum } from '@app/shared/models/theme-config.model';
@@ -10,20 +10,22 @@ import { Color, LegendPosition, NgxChartsModule, ScaleType } from '@swimlane/ngx
   templateUrl: './line-chart.html',
   styleUrl: './line-chart.scss',
 })
-export class LineChart {
+export class LineChart implements OnInit {
   @Input() data: MonthlyTrendProcessed[] = [];
-  multi: MonthlyTrendProcessed[] = [];
 
+  private themeService = inject(Theme);
+
+  multi: MonthlyTrendProcessed[] = [];
   // options
-  legend: boolean = false;
-  showLabels: boolean = true;
-  xAxis: boolean = true;
-  yAxis: boolean = true;
-  showYAxisLabel: boolean = true;
-  showXAxisLabel: boolean = true;
-  xAxisLabel: string = '';
-  yAxisLabel: string = '';
-  timeline: boolean = false;
+  legend = false;
+  showLabels = true;
+  xAxis = true;
+  yAxis = true;
+  showYAxisLabel = true;
+  showXAxisLabel = true;
+  xAxisLabel = '';
+  yAxisLabel = '';
+  timeline = false;
   legendPosition: LegendPosition = LegendPosition.Below;
   colorScheme: Color = {
     name: 'customScheme',
@@ -33,7 +35,7 @@ export class LineChart {
   };
   style = 'fill: #e74c3c';
 
-  constructor(private themeService: Theme) {
+  constructor() {
     effect(() => {
       const theme = this.themeService.theme();
       if (theme === ThemeEnum.Dark) {

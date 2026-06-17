@@ -1,4 +1,4 @@
-import { Component, Input, input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NameValueData } from '@app/shared/models/name-value.model';
 import { Color, NgxChartsModule, ScaleType } from '@swimlane/ngx-charts';
 
@@ -8,17 +8,17 @@ import { Color, NgxChartsModule, ScaleType } from '@swimlane/ngx-charts';
   templateUrl: './doughnut-chart.html',
   styleUrl: './doughnut-chart.scss',
 })
-export class DoughnutChart {
+export class DoughnutChart implements OnInit {
   @Input() data: NameValueData[] = [];
 
   single: NameValueData[] = [];
 
   // options
-  gradient: boolean = false;
-  showLegend: boolean = false;
-  showLabels: boolean = false;
-  isDoughnut: boolean = true;
-  legendPosition: string = 'below';
+  gradient = false;
+  showLegend = false;
+  showLabels = false;
+  isDoughnut = true;
+  legendPosition = 'below';
 
   colorScheme: Color = {
     name: 'customScheme',
@@ -26,8 +26,6 @@ export class DoughnutChart {
     group: ScaleType.Ordinal,
     domain: ['#006BE6', '#00ce90', '#fc9b01', '#875fff', '#FF286D'],
   };
-
-  constructor() {}
 
   ngOnInit() {
     this.single = this.data;

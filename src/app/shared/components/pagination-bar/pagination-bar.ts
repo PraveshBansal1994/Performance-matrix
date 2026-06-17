@@ -15,9 +15,9 @@ export class PaginationBar {
   @Input() data!: Observable<IEmployees>;
   @Output() paginationData = new EventEmitter<PaginationInfo>();
   public totalItems!: number | null | undefined;
-  public currentPage: number = 1;
-  public prevPage: number = 0;
-  public nextPage: number = 2;
+  public currentPage = 1;
+  public prevPage = 0;
+  public nextPage = 2;
   public lastPage!: number | null | undefined;
   public fromItemIndex = signal(0);
   public toItemIndex = signal(0);

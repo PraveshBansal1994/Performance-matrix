@@ -1,20 +1,19 @@
 import { inject, Injectable } from '@angular/core';
-import { DashboardApi } from './dashboard-api';
-import { Kpi } from '@app/shared/models/kpi.model';
-import { catchError, map, Observable, of } from 'rxjs';
-import { MonthlyTrendRaw } from '@app/shared/models/monthly-trend-raw.model';
-import { MonthlyTrendProcessed } from '@app/shared/models/monthly-trend-processed.model';
 import { DepartmentDetailsRaw } from '@app/shared/models/department-details-raw.model';
-import { NameValueData } from '@app/shared/models/name-value.model';
-import { GoalProgressRaw } from '@app/shared/models/goal-progress-raw.model';
-import { IEmployees } from '@app/shared/models/employees.model';
-import { GridFeatures } from '@app/shared/models/grid-features.model';
 import { EmployeesComparision } from '@app/shared/models/employees-comparision.model';
+import { IEmployees } from '@app/shared/models/employees.model';
+import { GoalProgressRaw } from '@app/shared/models/goal-progress-raw.model';
+import { GridFeatures } from '@app/shared/models/grid-features.model';
+import { Kpi } from '@app/shared/models/kpi.model';
+import { MonthlyTrendProcessed } from '@app/shared/models/monthly-trend-processed.model';
+import { MonthlyTrendRaw } from '@app/shared/models/monthly-trend-raw.model';
+import { NameValueData } from '@app/shared/models/name-value.model';
+import { catchError, map, Observable, of } from 'rxjs';
+import { DashboardApi } from './dashboard-api';
 
 @Injectable()
 export class DashboardService {
   private api = inject(DashboardApi);
-  constructor() {}
 
   public getKpis(): Observable<Kpi> {
     return this.api.getKPIs();
@@ -95,7 +94,7 @@ export class DashboardService {
   }
 
   private processDeptDetailsData(data: DepartmentDetailsRaw[]): NameValueData[] {
-    let refinedData: NameValueData[] = [];
+    const refinedData: NameValueData[] = [];
     data.map((item: DepartmentDetailsRaw) => {
       const newData: NameValueData = { name: item.dept, value: item.avg };
       refinedData.push(newData);
@@ -104,7 +103,7 @@ export class DashboardService {
   }
 
   private processGoalProgressData(data: GoalProgressRaw[]): NameValueData[] {
-    let refinedData: NameValueData[] = [];
+    const refinedData: NameValueData[] = [];
     data.map((item: GoalProgressRaw) => {
       const newData: NameValueData = {
         name: item.goal,

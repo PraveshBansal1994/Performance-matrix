@@ -19,9 +19,23 @@
       </button>
       <div class="theme">
         @if (isDarkTheme) {
-          <i class="bi bi-brightness-high" title="Light Theme" (click)="toggleTheme()"></i>
+          <button
+            type="button"
+            class="icon-btn"
+            title="Switch to light Theme"
+            (click)="toggleTheme()"
+          >
+            <i class="bi bi-brightness-high"></i>
+          </button>
         } @else {
-          <i class="bi bi-brightness-high-fill" title="Dark Theme" (click)="toggleTheme()"></i>
+          <button
+            type="button"
+            class="icon-btn"
+            title="Switch to dark Theme"
+            (click)="toggleTheme()"
+          >
+            <i class="bi bi-brightness-high-fill"></i>
+          </button>
         }
       </div>
     </div>

@@ -60,5 +60,13 @@
     @media (min-width: 320px) and (max-width: 768px) {
       flex-direction: column;
     }
+
+    button {
+      margin-left: auto;
+      background: transparent;
+      border: none;
+      color: var(--text-color);
+      cursor: pointer;
+    }
   }
 }

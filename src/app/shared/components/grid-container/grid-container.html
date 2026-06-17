@@ -30,6 +30,14 @@
       (selectedVal)="dropdownValStatus($event)"
     ></app-dropdown-list>
     <app-date-filter (dateChange)="dateChange($event)"></app-date-filter>
+    <button
+      type="button"
+      class="icon-btn"
+      title="Export as CSV (Visible rows only)"
+      (click)="exportData()"
+    >
+      <i class="bi bi-file-earmark-arrow-down"></i>
+    </button>
   </div>
   <div class="grid">
     <app-grid

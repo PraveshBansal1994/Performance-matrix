@@ -104,11 +104,19 @@
 
     .theme {
       margin-left: 15px;
-      i {
+
+      button {
+        background: transparent;
+        color: #fff;
+        border: none;
         cursor: pointer;
-        position: relative;
-        top: 2px;
       }
+
+      // i {
+      //   cursor: pointer;
+      //   position: relative;
+      //   top: 2px;
+      // }
     }
   }
 }

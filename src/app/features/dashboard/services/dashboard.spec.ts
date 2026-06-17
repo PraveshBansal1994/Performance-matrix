@@ -1,14 +1,14 @@
 import { TestBed } from '@angular/core/testing';
-import { firstValueFrom, of, throwError } from 'rxjs';
-import { DashboardService } from './dashboard';
-import { DashboardApi } from './dashboard-api';
+import { DepartmentDetailsRaw } from '@app/shared/models/department-details-raw.model';
+import { EmployeesComparision } from '@app/shared/models/employees-comparision.model';
+import { IEmployees } from '@app/shared/models/employees.model';
+import { GoalProgressRaw } from '@app/shared/models/goal-progress-raw.model';
+import { GridFeatures } from '@app/shared/models/grid-features.model';
 import { Kpi, KpiItem } from '@app/shared/models/kpi.model';
 import { MonthlyTrendRaw } from '@app/shared/models/monthly-trend-raw.model';
-import { DepartmentDetailsRaw } from '@app/shared/models/department-details-raw.model';
-import { GoalProgressRaw } from '@app/shared/models/goal-progress-raw.model';
-import { IEmployees } from '@app/shared/models/employees.model';
-import { GridFeatures } from '@app/shared/models/grid-features.model';
-import { EmployeesComparision } from '@app/shared/models/employees-comparision.model';
+import { of, throwError } from 'rxjs';
+import { DashboardService } from './dashboard';
+import { DashboardApi } from './dashboard-api';
 
 describe('DashboardService', () => {
   let service: DashboardService;

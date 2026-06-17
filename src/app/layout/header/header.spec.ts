@@ -2,14 +2,26 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Header } from './header';
 import { Theme } from '@app/core/services/theme';
 import { ThemeEnum } from '@app/shared/models/theme-config.model';
+import { vi } from 'vitest';
 
 class MockThemeService {
   private theme = ThemeEnum.Dark;
+
+  isRefreshData!: {
+    emit: ReturnType<typeof vi.fn>;
+  };
+
   getTheme() {
     return this.theme;
   }
   setTheme(next: ThemeEnum) {
     this.theme = next;
+  }
+
+  constructor() {
+    this.isRefreshData = {
+      emit: vi.fn(),
+    };
   }
 }
 

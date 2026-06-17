@@ -1,21 +1,21 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Theme } from '@app/core/services/theme';
 import { Cards } from '@app/shared/components/cards/cards';
-import { DashboardService } from './services/dashboard';
-import { Kpi } from '@app/shared/models/kpi.model';
-import { debounce, debounceTime, Observable, shareReplay, Subject, Subscription } from 'rxjs';
+import { DoughnutChart } from '@app/shared/components/doughnut-chart/doughnut-chart';
+import { GridContainer } from '@app/shared/components/grid-container/grid-container';
+import { HBarGraph } from '@app/shared/components/h-bar-graph/h-bar-graph';
 import { LineChart } from '@app/shared/components/line-chart/line-chart';
+import { VBarGraph } from '@app/shared/components/v-bar-graph/v-bar-graph';
+import { IEmployees } from '@app/shared/models/employees.model';
+import { GridFeatures } from '@app/shared/models/grid-features.model';
+import { Kpi } from '@app/shared/models/kpi.model';
 import { MonthlyTrendProcessed } from '@app/shared/models/monthly-trend-processed.model';
 import { NameValueData } from '@app/shared/models/name-value.model';
-import { VBarGraph } from '@app/shared/components/v-bar-graph/v-bar-graph';
-import { DoughnutChart } from '@app/shared/components/doughnut-chart/doughnut-chart';
-import { IEmployees } from '@app/shared/models/employees.model';
-import { GridContainer } from '@app/shared/components/grid-container/grid-container';
-import { SortInformation } from '@app/shared/models/sort-information.model';
-import { GridFeatures } from '@app/shared/models/grid-features.model';
 import { PaginationInfo } from '@app/shared/models/pagination.model';
-import { HBarGraph } from '@app/shared/components/h-bar-graph/h-bar-graph';
-import { CommonModule } from '@angular/common';
-import { Theme } from '@app/core/services/theme';
+import { SortInformation } from '@app/shared/models/sort-information.model';
+import { Observable, shareReplay, Subscription } from 'rxjs';
+import { DashboardService } from './services/dashboard';
 
 @Component({
   selector: 'app-dashboard',
@@ -24,7 +24,9 @@ import { Theme } from '@app/core/services/theme';
   styleUrl: './dashboard.scss',
   providers: [DashboardService],
 })
-export class Dashboard implements OnInit {
+export class Dashboard implements OnInit, OnDestroy {
+  private dashboardService = inject(DashboardService);
+  private themeService = inject(Theme);
   private monthlyTrendSubscription!: Subscription;
   private deptDetailsSubscription!: Subscription;
   private goalProgressSubscription!: Subscription;
@@ -48,21 +50,16 @@ export class Dashboard implements OnInit {
   public gridTitle = 'Employee';
   public gridSubTitle = 'Directory';
   public topEmployeeComp$!: Observable<NameValueData[]>;
-  public selectedTopEmpData: any = {};
-
-  constructor(private dashboardService: DashboardService, private themeService: Theme) {}
+  public selectedTopEmpData: NameValueData | null = null;
 
   ngOnInit() {
     this.getAllData();
-  }
-
-  ngAfterViewInit() {
     this.themeService.isRefreshData.subscribe((res) => {
-      if(res) {
-       this.getAllData();
-       this.selectedTopEmpData = {};
+      if (res) {
+        this.getAllData();
+        this.selectedTopEmpData = null;
       }
-    })
+    });
   }
 
   public getAllData() {
@@ -104,12 +101,8 @@ export class Dashboard implements OnInit {
     this.employeesDetails();
   }
 
-  public selectedRow(event: any) {
+  public selectedRow(event: NameValueData) {
     this.selectedTopEmpData = event;
-  }
-
-  public isEmpty(obj: any) {
-    return obj && Object.keys(obj).length === 0;
   }
 
   private kpis(): void {
@@ -135,15 +128,15 @@ export class Dashboard implements OnInit {
   }
 
   private employeesDetails(): void {
-    this.employeesDetails$ = this.dashboardService.getEmpDetails(this.employeeFilterKeys).pipe(
-      shareReplay(1)
-    );
+    this.employeesDetails$ = this.dashboardService
+      .getEmpDetails(this.employeeFilterKeys)
+      .pipe(shareReplay(1));
   }
 
   private topEmployeesScoreCompForEachDept(): void {
-    this.topEmployeeComp$ = this.dashboardService.getTopEmployeesScoreCompForEachDept().pipe(
-      shareReplay(1)
-    );
+    this.topEmployeeComp$ = this.dashboardService
+      .getTopEmployeesScoreCompForEachDept()
+      .pipe(shareReplay(1));
   }
 
   ngOnDestroy() {

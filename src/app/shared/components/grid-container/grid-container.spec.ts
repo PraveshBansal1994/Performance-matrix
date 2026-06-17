@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { GridContainer } from './grid-container';
-import { NameValueData } from '@app/shared/models/name-value.model';
-import { SortInformation } from '@app/shared/models/sort-information.model';
-import { PaginationInfo } from '@app/shared/models/pagination.model';
-import { of } from 'rxjs';
 import { IEmployees } from '@app/shared/models/employees.model';
+import { PaginationInfo } from '@app/shared/models/pagination.model';
+import { SortInformation } from '@app/shared/models/sort-information.model';
+import * as rxjs from 'rxjs';
+import { of } from 'rxjs';
+import { GridContainer } from './grid-container';
 
 describe('GridContainer Component', () => {
   let component: GridContainer;
@@ -102,5 +102,25 @@ describe('GridContainer Component', () => {
     const spy = vi.spyOn(component.OnDateChange, 'emit');
     component.dateChange('2026-06-08');
     expect(spy).toHaveBeenCalledWith('2026-06-08');
+  });
+
+  it('should call firstValueFrom and execute exportData without error', async () => {
+    const spy = vi.spyOn(rxjs, 'firstValueFrom').mockResolvedValue(mockEmployees);
+
+    component.data = of(mockEmployees);
+
+    await expect(component.exportData()).resolves.not.toThrow();
+
+    expect(spy).toHaveBeenCalledWith(component.data);
+  });
+
+  it('should fetch data correctly inside exportData', async () => {
+    const spy = vi.spyOn(rxjs, 'firstValueFrom').mockResolvedValue(mockEmployees);
+
+    component.data = of(mockEmployees);
+
+    await component.exportData();
+
+    expect(spy).toHaveBeenCalledWith(component.data);
   });
 });

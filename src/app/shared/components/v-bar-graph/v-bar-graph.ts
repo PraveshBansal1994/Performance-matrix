@@ -1,4 +1,4 @@
-import { Component, effect, Input } from '@angular/core';
+import { Component, effect, inject, Input, OnInit } from '@angular/core';
 import { Theme } from '@app/core/services/theme';
 import { NameValueData } from '@app/shared/models/name-value.model';
 import { ThemeEnum } from '@app/shared/models/theme-config.model';
@@ -10,10 +10,12 @@ import { Color, NgxChartsModule, ScaleType } from '@swimlane/ngx-charts';
   templateUrl: './v-bar-graph.html',
   styleUrl: './v-bar-graph.scss',
 })
-export class VBarGraph {
+export class VBarGraph implements OnInit {
   @Input() data: NameValueData[] = [];
-  single: any[] = [];
 
+  private themeService = inject(Theme);
+
+  single: NameValueData[] = [];
   // options
   showXAxis = false;
   showYAxis = true;
@@ -31,7 +33,7 @@ export class VBarGraph {
   };
   style = 'fill: #e74c3c';
 
-  constructor(private themeService: Theme) {
+  constructor() {
     effect(() => {
       const theme = this.themeService.theme();
       if (theme === ThemeEnum.Dark) {

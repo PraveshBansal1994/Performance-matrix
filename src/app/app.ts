@@ -11,6 +11,4 @@ import { Header } from '@app/layout/header/header';
 export class App {
   public title = 'Performance Metrics';
   public subTitle = 'Employee Performance Analytics - FY2025 Q4';
-
-  constructor() {}
 }

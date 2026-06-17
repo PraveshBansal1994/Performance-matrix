@@ -1,14 +1,15 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { NameValueData } from '@app/shared/models/name-value.model';
-import { SearchBar } from '@app/shared/components/search-bar/search-bar';
-import { DropdownList } from '@app/shared/components/dropdown-list/dropdown-list';
-import { Grid } from '../grid/grid';
-import { Observable } from 'rxjs';
-import { IEmployees } from '@app/shared/models/employees.model';
 import { CommonModule } from '@angular/common';
-import { SortInformation } from '@app/shared/models/sort-information.model';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { DropdownList } from '@app/shared/components/dropdown-list/dropdown-list';
+import { SearchBar } from '@app/shared/components/search-bar/search-bar';
+import { IEmployees } from '@app/shared/models/employees.model';
+import { NameValueData } from '@app/shared/models/name-value.model';
 import { PaginationInfo } from '@app/shared/models/pagination.model';
+import { SortInformation } from '@app/shared/models/sort-information.model';
+import { exportToCSV } from '@app/shared/utils/export.util';
+import { firstValueFrom, Observable } from 'rxjs';
 import { DateFilter } from '../date-filter/date-filter';
+import { Grid } from '../grid/grid';
 
 @Component({
   selector: 'app-grid-container',
@@ -54,7 +55,12 @@ export class GridContainer {
     this.paginationData.emit(event);
   }
 
-  public dateChange(event: string) {
+  public dateChange(event: string): void {
     this.OnDateChange.emit(event);
+  }
+
+  public async exportData(): Promise<void> {
+    const res = await firstValueFrom(this.data);
+    exportToCSV(res.data, 'Employees.csv');
   }
 }

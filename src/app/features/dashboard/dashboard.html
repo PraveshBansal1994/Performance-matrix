@@ -54,16 +54,16 @@
     </div>
     <div class="drilldown-container">
       <div class="emp-detail-title">Employee Information</div>
-      @if (!isEmpty(selectedTopEmpData)) {
+      @if (selectedTopEmpData) {
         <div class="emp-detail-header">
           <div class="avatar">
-            {{ selectedTopEmpData?.name?.split(' ')[0][0]
-            }}{{ selectedTopEmpData?.name?.split(' ')[1][0] }}
+            {{ selectedTopEmpData.name.split(' ')[0][0]
+            }}{{ selectedTopEmpData.name.split(' ')[1]?.[0] }}
           </div>
           <div>
-            <div class="emp-name">{{ selectedTopEmpData?.name }}</div>
+            <div class="emp-name">{{ selectedTopEmpData.name }}</div>
           </div>
-          <div class="score-badge">{{ selectedTopEmpData?.value }}</div>
+          <div class="score-badge">{{ selectedTopEmpData.value }}</div>
         </div>
         <div class="emp-detail-content">Coming Soon...</div>
       } @else {

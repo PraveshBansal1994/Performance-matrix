@@ -1,4 +1,4 @@
-import { Injectable, Output, signal, EventEmitter } from '@angular/core';
+import { Injectable, signal, EventEmitter } from '@angular/core';
 import { ThemeEnum, ThemeType } from '@app/shared/models/theme-config.model';
 
 @Injectable({

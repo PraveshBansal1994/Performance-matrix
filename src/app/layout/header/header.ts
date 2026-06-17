@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { Theme } from '@app/core/services/theme';
 import { ThemeEnum, ThemeType } from '@app/shared/models/theme-config.model';
 
@@ -9,12 +9,11 @@ import { ThemeEnum, ThemeType } from '@app/shared/models/theme-config.model';
   styleUrl: './header.scss',
 })
 export class Header implements OnInit {
+  private themeService = inject(Theme);
   @Input() title = '';
   @Input() subTitle = '';
   public refreshAt!: string;
   public isDarkTheme = true;
-
-  constructor(private themeService: Theme) {}
 
   ngOnInit() {
     this.onRefresh();

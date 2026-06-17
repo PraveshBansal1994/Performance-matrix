@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output, signal } from '@angular/core';
 import { EmployeeColumns } from '@app/features/dashboard/services/employee-columns';
 import { IEmployees } from '@app/shared/models/employees.model';
+import { PaginationInfo } from '@app/shared/models/pagination.model';
+import { SortInformation } from '@app/shared/models/sort-information.model';
+import { PhoneFormatPipe } from '@app/shared/pipes/phone-format-pipe';
 import { Observable } from 'rxjs';
 import { PaginationBar } from '../pagination-bar/pagination-bar';
-import { SortInformation } from '@app/shared/models/sort-information.model';
-import { PaginationInfo } from '@app/shared/models/pagination.model';
-import { PhoneFormatPipe } from '@app/shared/pipes/phone-format-pipe';
 
 @Component({
   selector: 'app-grid',
@@ -20,12 +20,14 @@ export class Grid {
   @Output() sortInformation = new EventEmitter<SortInformation>();
   @Output() paginationData = new EventEmitter<PaginationInfo>();
 
+  private employeeColumnsService = inject(EmployeeColumns);
+
   public sortCol = '';
   public sortOrder = '';
   public columns: string[];
   public dynamicClassName = signal('');
 
-  constructor(private employeeColumnsService: EmployeeColumns) {
+  constructor() {
     this.columns = this.employeeColumnsService.getColumns();
   }
 

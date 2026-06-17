@@ -1,8 +1,8 @@
-import { Component, EventEmitter, Inject, Input, Output, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, EventEmitter, inject, Input, OnInit, Output, PLATFORM_ID } from '@angular/core';
 import { NameValueData } from '@app/shared/models/name-value.model';
 import { Color, NgxChartsModule, ScaleType } from '@swimlane/ngx-charts';
 import { Observable } from 'rxjs';
-import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-h-bar-graph',
@@ -10,24 +10,26 @@ import { isPlatformBrowser } from '@angular/common';
   templateUrl: './h-bar-graph.html',
   styleUrl: './h-bar-graph.scss',
 })
-export class HBarGraph {
+export class HBarGraph implements OnInit {
   @Input() data$!: Observable<NameValueData[]>;
   @Output() selectedData = new EventEmitter();
+
+  private platformId = inject(PLATFORM_ID);
 
   public isBrowser: boolean;
   public chartData$!: Observable<NameValueData[]>;
 
   // options
-  showXAxis: boolean = false;
-  showYAxis: boolean = false;
-  gradient: boolean = false;
-  showLegend: boolean = false;
-  showXAxisLabel: boolean = true;
-  yAxisLabel: string = '';
-  showYAxisLabel: boolean = true;
-  shoDataLabel: boolean = true;
-  xAxisLabel: string = '';
-  yAxisWidth: number = 5;
+  showXAxis = false;
+  showYAxis = false;
+  gradient = false;
+  showLegend = false;
+  showXAxisLabel = true;
+  yAxisLabel = '';
+  showYAxisLabel = true;
+  shoDataLabel = true;
+  xAxisLabel = '';
+  yAxisWidth = 5;
 
   colorScheme: Color = {
     name: 'customScheme',
@@ -37,7 +39,7 @@ export class HBarGraph {
   };
   style = 'fill: #e74c3c';
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+  constructor() {
     this.isBrowser = isPlatformBrowser(this.platformId);
   }
 

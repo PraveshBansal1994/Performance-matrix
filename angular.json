@@ -3,7 +3,10 @@
   "version": 1,
   "cli": {
     "packageManager": "npm",
-    "schematicCollections": ["angular-eslint"]
+    "schematicCollections": [
+      "angular-eslint"
+    ],
+    "analytics": "e57435fc-3cd1-4e38-b243-833e6816374b"
   },
   "newProjectRoot": "projects",
   "projects": {

@@ -22,6 +22,7 @@ export class Header implements OnInit {
 
   public onRefresh(): void {
     this.refreshAt = this.getCurrentTime();
+    this.themeService.isRefreshData.emit(true);
   }
 
   public getCurrentTheme(): string {

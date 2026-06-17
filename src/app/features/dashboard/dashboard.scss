@@ -1,5 +1,5 @@
 .dashboard-container {
-  padding: 28px 32px;
+  padding: 28px 10px;
 
   @media (min-width: 320px) and (max-width: 400px) {
     padding: 28px 5px;
@@ -72,8 +72,8 @@
       gap: 12px;
       padding: 10px 12px;
       border-radius: 10px;
-      border: 1px solid #0077ff;
-      background: #162035;
+      border: 1px solid var(--refresh-btn-color);
+      background: var(--emp-detail-header);
       transition: all 0.18s;
       position: relative;
       overflow: hidden;
@@ -85,7 +85,7 @@
         top: 0;
         bottom: 0;
         width: 3px;
-        background: #0077ff;
+        background: var(--refresh-btn-color);
         border-radius: 3px 0 0 3px;
         transform: scaleY(1);
         transition: transform 0.2s;
@@ -122,8 +122,8 @@
         border-radius: 20px;
         font-size: 13px;
         font-weight: 700;
-        background: rgba(0, 229, 160, 0.1);
-        color: #00e5a0;
+        background: var(--grid-active-border);
+        color: var(--score-color);
       }
     }
 

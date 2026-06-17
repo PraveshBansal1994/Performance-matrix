@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, Output, signal, EventEmitter } from '@angular/core';
 import { ThemeEnum, ThemeType } from '@app/shared/models/theme-config.model';
 
 @Injectable({
@@ -8,6 +8,8 @@ export class Theme {
   private themeSignal = signal<ThemeType>(ThemeEnum.Dark);
 
   readonly theme = this.themeSignal.asReadonly();
+
+  public isRefreshData = new EventEmitter<boolean>();
 
   getTheme(): ThemeType {
     return this.themeSignal();

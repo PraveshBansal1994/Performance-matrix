@@ -2,7 +2,7 @@ import { Component, OnInit, signal } from '@angular/core';
 import { Cards } from '@app/shared/components/cards/cards';
 import { DashboardService } from './services/dashboard';
 import { Kpi } from '@app/shared/models/kpi.model';
-import { debounce, debounceTime, Observable, Subject, Subscription } from 'rxjs';
+import { debounce, debounceTime, Observable, shareReplay, Subject, Subscription } from 'rxjs';
 import { LineChart } from '@app/shared/components/line-chart/line-chart';
 import { MonthlyTrendProcessed } from '@app/shared/models/monthly-trend-processed.model';
 import { NameValueData } from '@app/shared/models/name-value.model';
@@ -15,6 +15,7 @@ import { GridFeatures } from '@app/shared/models/grid-features.model';
 import { PaginationInfo } from '@app/shared/models/pagination.model';
 import { HBarGraph } from '@app/shared/components/h-bar-graph/h-bar-graph';
 import { CommonModule } from '@angular/common';
+import { Theme } from '@app/core/services/theme';
 
 @Component({
   selector: 'app-dashboard',
@@ -49,9 +50,22 @@ export class Dashboard implements OnInit {
   public topEmployeeComp$!: Observable<NameValueData[]>;
   public selectedTopEmpData: any = {};
 
-  constructor(private dashboardService: DashboardService) {}
+  constructor(private dashboardService: DashboardService, private themeService: Theme) {}
 
   ngOnInit() {
+    this.getAllData();
+  }
+
+  ngAfterViewInit() {
+    this.themeService.isRefreshData.subscribe((res) => {
+      if(res) {
+       this.getAllData();
+       this.selectedTopEmpData = {};
+      }
+    })
+  }
+
+  public getAllData() {
     this.kpis();
     this.monthlyTrend();
     this.departmentDetails();
@@ -121,11 +135,15 @@ export class Dashboard implements OnInit {
   }
 
   private employeesDetails(): void {
-    this.employeesDetails$ = this.dashboardService.getEmpDetails(this.employeeFilterKeys);
+    this.employeesDetails$ = this.dashboardService.getEmpDetails(this.employeeFilterKeys).pipe(
+      shareReplay(1)
+    );
   }
 
   private topEmployeesScoreCompForEachDept(): void {
-    this.topEmployeeComp$ = this.dashboardService.getTopEmployeesScoreCompForEachDept();
+    this.topEmployeeComp$ = this.dashboardService.getTopEmployeesScoreCompForEachDept().pipe(
+      shareReplay(1)
+    );
   }
 
   ngOnDestroy() {

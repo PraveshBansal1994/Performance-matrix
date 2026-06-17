@@ -41,6 +41,8 @@ $white: #fff;
   --grid-inactive-txt: #fff;
   --grid-inactive-bg: red;
   --grid-inactive-border: rgba(0, 0, 0, 0.3);
+  --emp-detail-header: #d8d8d8;
+  --score-color: #0fff38;
 }
 
 .dark-theme {
@@ -78,4 +80,6 @@ $white: #fff;
   --grid-inactive-txt: #ff7c7c;
   --grid-inactive-bg: rgba(255, 124, 124, 0.12);
   --grid-inactive-border: rgba(255, 124, 124, 0.25);
+  --emp-detail-header: #162035;
+  --score-color: #00e5a0;
 }

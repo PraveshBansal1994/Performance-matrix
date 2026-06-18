@@ -4,28 +4,28 @@ This project is used to analyze the employees performace over the period.
 
 ## About
 
-Purpose of this project:
+Description of this project:
+
 - To showcase the following details on the top
-    - Avg Performance Score
-    - Goals Completed
-    - Team Morale Index
-    - Top Performer
+  - Avg Performance Score
+  - Goals Completed
+  - Team Morale Index
+  - Top Performer
 - Charts
-    - Monthly Performance Trend (Line Chart)
-    - Department Avg Score (Vertical Bar)
-    - Q2 Goal Progress (Doughnut chart)
+  - Monthly Performance Trend (Line Chart)
+  - Department Avg Score (Vertical Bar)
+  - Q2 Goal Progress (Doughnut chart)
 - Employee Directory
-    - It consists all employees information
-        - Total number of employees
-        - Total number of departments to with employees are associated
-        - Table with employees details
-        - Pagination at the bottom
+  - It consists all employees information
+    - Total number of employees
+    - Total number of departments to with employees are associated
+    - Table with employees details
+    - Pagination at the bottom
 - Top Employee in Each Department (Horizontal Bar Graph)
 - Employee Information
-    - When user clicks on any of the horizontal bar graph, then respective employee details would be visible in this section
+  - When user clicks on any of the horizontal bar graph, then respective employee details would be visible in this section
 
 ---
-
 
 ## Tech stack
 
@@ -34,7 +34,6 @@ Purpose of this project:
 - RxJS (version 7.8.0)
 - SCSS
 - Using mock data throguh JSON server
-
 
 ## Getting Started
 
@@ -47,15 +46,16 @@ Make sure you have installed:
 - Angular CLI (>= 21.X.X)
 
 To install Angular CLI
+
 ```bash
 npm install -g @angular/cli
 ```
 
 To install project dependencies
+
 ```bash
 npm install
 ```
-
 
 ## Development server
 
@@ -69,14 +69,13 @@ Once the server is running, open your browser and navigate to `http://localhost:
 
 ## Code scaffolding
 
-Angular CLI includes powerful code scaffolding tools. Bydefault it'll create in src/app location. 
+Angular CLI includes powerful code scaffolding tools. Bydefault it'll create in src/app location.
 To generate a new component, run:
 
 ```bash
 ng generate component component-name - To generate a component
 ng generate service service-name - To generate a service
 ```
-
 
 For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
 
@@ -102,6 +101,14 @@ To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use th
 ng test
 ```
 
+## Linting
+
+To run linting checks for the project, use the Angular CLI command:
+
+```bash
+ng lint
+```
+
 ## To run mock API server
 
 ```bash
@@ -111,20 +118,21 @@ npx json-server --watch mock-api/db.json
 ## Project Structure
 
 - src
-    - app
-        - core
-            - interceptors
-            - services
-        - features
-        - layouts
-        - shared
-            - components
-            - models
-            - pipes
-        - app.html
-        - app.ts
-        - app.routes.ts
-    - styles
-    - environments
-    - index.html
-    - main.ts
+  - app
+    - core
+      - interceptors
+      - services
+    - features
+    - layouts
+    - shared
+      - components
+      - models
+      - pipes
+      - utils
+    - app.html
+    - app.ts
+    - app.routes.ts
+  - styles
+  - environments
+  - index.html
+  - main.ts
